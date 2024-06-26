@@ -1,3 +1,6 @@
+from collections import OrderedDict
+
+
 class CaixaEletronico:
     def __init__(self):
         self.cedulas = [100, 50, 20, 10, 5, 2]
@@ -6,8 +9,8 @@ class CaixaEletronico:
         if not isinstance(valor, int) or valor <= 0:
             raise ValueError("O valor deve ser um inteiro positivo.")
 
-        resultado = {}
-        for cedula in self.cedulas:
+        resultado = OrderedDict()
+        for cedula in sorted(self.cedulas, reverse=True):  # Ordenando as cédulas em ordem decrescente
             quantidade, valor = divmod(valor, cedula)
             resultado[cedula] = quantidade
 
